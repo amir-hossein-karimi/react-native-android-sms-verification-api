@@ -1,5 +1,5 @@
 {
-  "name": "react-native-android-sms-verification-api",
+  "name": "@amir-hossein-karimi/react-native-android-sms-verification-api",
   "version": "1.0.6",
   "description": "A wrapper for the Android SMS Verification API. Includes both SMS Retriever for Zero-tap SMS verification and SMS User Consent for the One-tap SMS verification",
   "main": "lib/commonjs/index",
@@ -41,13 +41,13 @@
     "sms retriver",
     "sms user consent"
   ],
-  "repository": "https://github.com/jgkiano/react-native-android-sms-verification-api",
-  "author": "Kiano <jgkiano@gmail.com> (https://github.com/jgkiano)",
+  "repository": "https://github.com/amir-hossein-karimi/react-native-android-sms-verification-api",
+  "author": "amir <a.hosseinkarimi82@gmail.com> (https://github.com/amir-hossein-karimi)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jgkiano/react-native-android-sms-verification-api/issues"
+    "url": "https://github.com/amir-hossein-karimi/react-native-android-sms-verification-api/issues"
   },
-  "homepage": "https://github.com/jgkiano/react-native-android-sms-verification-api#readme",
+  "homepage": "https://github.com/amir-hossein-karimi/react-native-android-sms-verification-api#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

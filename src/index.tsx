@@ -21,9 +21,7 @@ let cb: Callback | null = null;
 
 const AndroidSmsVerificationApi: AndroidSmsVerificationApiType =
   NativeModules.AndroidSmsVerificationApi;
-const eventEmitter = new NativeEventEmitter(
-  NativeModules.AndroidSmsVerificationApi
-);
+const eventEmitter = new NativeEventEmitter();
 const onMessageSuccess = (message: string) => {
   if (typeof cb === 'function') {
     cb(null, message);
@@ -35,12 +33,9 @@ const onMessageError = (error: string) => {
   }
 };
 const startListeners = () => {
-  if (!eventEmitter.listeners(EmitterMessages.SMS_RECEIVED).length) {
-    eventEmitter.addListener(EmitterMessages.SMS_RECEIVED, onMessageSuccess);
-  }
-  if (!eventEmitter.listeners(EmitterMessages.SMS_ERROR).length) {
-    eventEmitter.addListener(EmitterMessages.SMS_ERROR, onMessageError);
-  }
+  removeAllListeners();
+  eventEmitter.addListener(EmitterMessages.SMS_RECEIVED, onMessageSuccess);
+  eventEmitter.addListener(EmitterMessages.SMS_ERROR, onMessageError);
 };
 
 export const removeAllListeners = () => {
