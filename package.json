@@ -1,6 +1,6 @@
 {
   "name": "@amir-hossein-karimi/react-native-android-sms-verification-api",
-  "version": "1.0.6",
+  "version": "1.1.6",
   "description": "A wrapper for the Android SMS Verification API. Includes both SMS Retriever for Zero-tap SMS verification and SMS User Consent for the One-tap SMS verification",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -25,7 +25,6 @@
     "test": "jest",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
@@ -141,19 +140,5 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
   }
 }
