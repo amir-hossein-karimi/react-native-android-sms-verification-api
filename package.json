@@ -1,6 +1,6 @@
 {
   "name": "@amir-hossein-karimi/react-native-android-sms-verification-api",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "A wrapper for the Android SMS Verification API. Includes both SMS Retriever for Zero-tap SMS verification and SMS User Consent for the One-tap SMS verification",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
