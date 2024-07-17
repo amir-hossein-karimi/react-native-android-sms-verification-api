@@ -41,7 +41,14 @@ public class AndroidSmsVerificationApiModule extends ReactContextBaseJavaModule 
   private final ActivityEventListener activityEventListener = new ActivityEventListener() {
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-      handleOnActivityResult(activity, requestCode, resultCode, data);
+      if (requestCode == userConsentRequestCode) {
+            if (resultCode == Activity.RESULT_OK) {
+              String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
+              AndroidSmsVerificationApiModule.sendEvent(Constant.SMS_RECEIVED, message);
+            } else {
+              AndroidSmsVerificationApiModule.sendEvent(Constant.SMS_ERROR, "Unable to retrieve SMS");
+            }
+          }
     }
     @Override
     public void onNewIntent(Intent intent) {
@@ -88,25 +95,6 @@ public class AndroidSmsVerificationApiModule extends ReactContextBaseJavaModule 
     }
     else {
         getReactApplicationContext().registerReceiver(smsVerificationReceiver, intentFilter, SmsRetriever.SEND_PERMISSION, null);
-    }
-  }
-
-  private void handleOnActivityResult (Activity activity, int requestCode, int resultCode, Intent data) {
-    if (requestCode == userConsentRequestCode) {
-      if (resultCode == Activity.RESULT_OK) {
-        String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
-        AndroidSmsVerificationApiModule.sendEvent(Constant.SMS_RECEIVED, message);
-      } else {
-        AndroidSmsVerificationApiModule.sendEvent(Constant.SMS_ERROR, "Unable to retrieve SMS");
-      }
-    }
-    if (requestCode == phoneNumberRequestCode && promise != null) {
-      if (resultCode == Activity.RESULT_OK) {
-        Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
-        promise.resolve(credential.getId());
-      } else {
-        promise.reject(String.valueOf(resultCode), "Unable to retrieve phone number");
-      }
     }
   }
 
