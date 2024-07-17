@@ -20,7 +20,6 @@ import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.Credentials;
-import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -127,19 +126,6 @@ public class AndroidSmsVerificationApiModule extends ReactContextBaseJavaModule 
   @ReactMethod
   public void multiply (int a, int b, Promise promise) {
     promise.resolve(a*b+5);
-  }
-
-  @ReactMethod
-  public void requestPhoneNumber (int phoneNumberRequestCode, Promise promise) {
-    this.promise = promise;
-    this.phoneNumberRequestCode = phoneNumberRequestCode;
-    HintRequest request = new HintRequest.Builder().setPhoneNumberIdentifierSupported(true).build();
-    PendingIntent intent = Credentials.getClient(getReactApplicationContext()).getHintPickerIntent(request);
-    try {
-      getCurrentActivity().startIntentSenderForResult(intent.getIntentSender(), phoneNumberRequestCode, null, 0, 0, 0);
-    } catch (Exception e) {
-      promise.reject(e);
-    }
   }
 
   @ReactMethod
